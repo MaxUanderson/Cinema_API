@@ -1,27 +1,26 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/database/mysql-datasource.config';
-import { Despesa } from './forma_pagamento.entity';
+import { Forma_pagamento } from './forma_pagamento.entity';
 
-export class DespesaController {
+export class Forma_pagamentoController {
   public async list(req: Request, res: Response) {
 
-    const despesas = await AppDataSource.manager.find(Despesa)
+    const forma_pagamento = await AppDataSource.manager.find(Forma_pagamento)
 
-    res.status(200).json({ dados: despesas });
+    res.status(200).json({ dados: forma_pagamento });
   }
 
   public async create(req: Request, res: Response){
-    let descricao = req.body.descricao;
-    let valor = req.body.valor;
-    let data = req.body.data;
+    let nome = req.body.nome;
+    let ativado = req.body.ativado;
+    
 
-    let desp = new Despesa();
-    desp.descricao = descricao;
-    desp.data=data;
-    desp.valor=valor;
+    let forma_pagamento = new Forma_pagamento();
+    forma_pagamento.nome = nome;
+    forma_pagamento.ativado=ativado;
 
-    const despesa_salva = await AppDataSource.manager.save(desp);
-    res.status(201).json(despesa_salva);
+    const forma_pagamento_salva = await AppDataSource.manager.save(forma_pagamento);
+    res.status(201).json(forma_pagamento_salva);
 
   
   }

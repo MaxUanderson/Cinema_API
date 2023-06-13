@@ -1,25 +1,28 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
 
-@Entity('despesas')
-export class Despesa {
+@Entity('filme')
+export class Filme {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  descricao!: string;
+  titulo!: string;
 
   @Column()
-  data!: Date;
+  sinopse!: string;
 
   @Column()
-  data_efetivacao!: Date;
+  atores!: string;
 
   @Column()
-  valor!: number;
+  diretor!: string;
 
   @Column()
-  valor_pago!: number;
+  genero!: string;
 
   @Column()
-  pago!: boolean;
+  classificacao_indicativa!: string;
+
+  @Column()
+  duracao!: Timestamp;
 }

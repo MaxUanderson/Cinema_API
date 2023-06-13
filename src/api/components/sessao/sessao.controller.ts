@@ -1,27 +1,31 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/database/mysql-datasource.config';
-import { Despesa } from './sessao.entity';
+import { Sessao } from './sessao.entity';
 
-export class DespesaController {
+export class SessaoController {
   public async list(req: Request, res: Response) {
 
-    const despesas = await AppDataSource.manager.find(Despesa)
+    const sessao = await AppDataSource.manager.find(Sessao)
 
-    res.status(200).json({ dados: despesas });
+    res.status(200).json({ dados: sessao });
   }
 
   public async create(req: Request, res: Response){
-    let descricao = req.body.descricao;
-    let valor = req.body.valor;
     let data = req.body.data;
+    let horario_inicio = req.body.horario_inicio;
+    let horario_fim = req.body.horario_fim;
+    let sala_id = req.body.sala_id;
+    let filme_id = req.body.filme_id;
 
-    let desp = new Despesa();
-    desp.descricao = descricao;
-    desp.data=data;
-    desp.valor=valor;
+    let sessao = new Sessao();
+    sessao.data = data;
+    sessao.horario_inicio = horario_inicio;
+    sessao.horario_fim = horario_fim;
+    sessao.sala_id = sala_id;
+    sessao.filme_id = filme_id;
 
-    const despesa_salva = await AppDataSource.manager.save(desp);
-    res.status(201).json(despesa_salva);
+    const sessao_salva = await AppDataSource.manager.save(sessao);
+    res.status(201).json(sessao_salva);
 
   
   }

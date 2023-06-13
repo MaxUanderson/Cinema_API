@@ -19,8 +19,6 @@ export class ClassificacaoController {
     
 
     const classificacao_salva = await AppDataSource.manager.save(desp);
-    res.status(201).json(classificacao_salva);
-
-  
+    res.status(201).json(classificacao_salva);  
   }
 }

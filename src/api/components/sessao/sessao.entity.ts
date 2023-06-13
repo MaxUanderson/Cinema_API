@@ -1,25 +1,23 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('despesas')
-export class Despesa {
+@Entity('sessao')
+export class Sessao{
   @PrimaryGeneratedColumn()
   id!: number;
-
-  @Column()
-  descricao!: string;
 
   @Column()
   data!: Date;
 
   @Column()
-  data_efetivacao!: Date;
+  horario_inicio!: string;
 
   @Column()
-  valor!: number;
+  horario_fim!: string;
 
   @Column()
-  valor_pago!: number;
+  sala_id!: number;
 
   @Column()
-  pago!: boolean;
+  filme_id!: number;
+ 
 }

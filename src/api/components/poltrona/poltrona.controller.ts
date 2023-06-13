@@ -1,27 +1,31 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../../../config/database/mysql-datasource.config';
-import { Despesa } from './poltrona.entity';
+import { Poltrona } from './poltrona.entity';
 
-export class DespesaController {
+export class PoltronaController {
   public async list(req: Request, res: Response) {
 
-    const despesas = await AppDataSource.manager.find(Despesa)
+    const poltrona = await AppDataSource.manager.find(Poltrona)
 
-    res.status(200).json({ dados: despesas });
+    res.status(200).json({ dados: poltrona });
   }
 
   public async create(req: Request, res: Response){
-    let descricao = req.body.descricao;
-    let valor = req.body.valor;
-    let data = req.body.data;
-
-    let desp = new Despesa();
-    desp.descricao = descricao;
-    desp.data=data;
-    desp.valor=valor;
-
-    const despesa_salva = await AppDataSource.manager.save(desp);
-    res.status(201).json(despesa_salva);
+    let numero= req.body.numero;
+    let fileira = req.body.fileira;
+    let coordenadora = req.body.coordenadora;
+    let status = req.body.status;
+    let sala_id = req.body.sala_id;  
+    
+    let poltrona = new Poltrona;
+    poltrona.numero=numero;
+    poltrona.fileira = fileira;
+    poltrona.coordenadora=coordenadora;
+    poltrona.status = status;
+    poltrona.sala_id=sala_id;
+    
+    const poltrona_salva = await AppDataSource.manager.save(poltrona);
+    res.status(201).json(poltrona_salva);
 
   
   }

@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { DespesaController } from './venda.controller';
+import { VendaController } from './venda.controller';
 
-export class DespesaRoutes {
+export class VendaRoutes {
   private router: Router = Router();
 
-  private controller: DespesaController;
+  private controller: VendaController;
 
   constructor() {
-    this.controller = new DespesaController();
+    this.controller = new VendaController();
     this.init();
   }
 
@@ -15,6 +15,9 @@ export class DespesaRoutes {
     this.router.get('/', this.controller.list);
     // this.router.get('/info', this.controller.info);
     this.router.post('/', this.controller.create);
+    this.router.put('/:cod', this.controller.update);
+    this.router.delete('/:cod', this.controller.destroy);
+    this.router.get('/:cod', this.controller.show);
   }
 
   public routes(): Router {
